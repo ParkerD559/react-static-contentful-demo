@@ -1,5 +1,5 @@
 import React from 'react'
-import { Root, Routes, addPrefetchExcludes } from 'react-static'
+import { Root, Routes, addPrefetchExcludes, Head } from 'react-static'
 //
 import { Link, Router } from 'components/Router'
 import Dynamic from 'containers/Dynamic'
@@ -12,6 +12,9 @@ addPrefetchExcludes(['dynamic'])
 function App() {
   return (
     <Root>
+      <Head>
+        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      </Head>
       <nav>
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
@@ -26,6 +29,21 @@ function App() {
           </Router>
         </React.Suspense>
       </div>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            if (window.netlifyIdentity) {
+              window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                  window.netlifyIdentity.on("login", () => {
+                    document.location.href = "/admin/";
+                  });
+                }
+              });
+            }
+          `
+        }}
+      />
     </Root>
   )
 }

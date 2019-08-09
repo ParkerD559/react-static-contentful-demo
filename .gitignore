@@ -67,3 +67,6 @@ artifacts
 # terraform
 *.tfstate*
 *.terraform
+
+# misc
+tmp
