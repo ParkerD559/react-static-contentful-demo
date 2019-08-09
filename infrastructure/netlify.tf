@@ -1,7 +1,3 @@
-variable "branch" {
-  default = "master"
-}
-
 # Configure the Netlify Provider
 provider "netlify" {}
 
@@ -10,7 +6,7 @@ resource "netlify_deploy_key" "key" {}
 
 # Define your site
 resource "netlify_site" "main" {
-  name = "demo-react-static-contentful"
+  name = "${var.repo}"
 
   repo {
     repo_branch   = "${var.branch}"

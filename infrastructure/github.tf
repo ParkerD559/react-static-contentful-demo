@@ -1,12 +1,4 @@
 // configure the github provider
-variable "org" {
-  default = "ParkerD559"
-}
-
-variable "repo" {
-  default = "react-static-contentful-demo"
-}
-
 provider "github" {
   organization = "${var.org}"
 }
